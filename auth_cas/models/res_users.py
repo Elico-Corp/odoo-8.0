@@ -22,11 +22,11 @@ class ResUsers(models.Model):
     cas_key = fields.Char('CAS Key', size=16, readonly=True)
 
     @api.model
-    def check_credentials(self, password):
+    def _check_credentials(self, password):
         """Check Authenticy of logins"""
         # We try to connect the user with his password by the standard way
         try:
-            return super(ResUsers, self).check_credentials(password)
+            return super(ResUsers, self)._check_credentials(password)
         # If it failed, we try to do it thanks to
         # the cas key created by the Controller
         except AccessDenied:
